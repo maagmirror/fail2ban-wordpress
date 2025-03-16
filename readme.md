@@ -51,6 +51,40 @@ bantime = 86400
 action = iptables-multiport[name=block-wp-scanners, port="http,https", protocol=tcp]
 ```
 
+## For VestaCP
+
+```ini
+[wordpress-xmlrpc]
+enabled = true
+filter = wordpress-xmlrpc
+logpath = /var/log/nginx/access.log
+maxretry = 2
+findtime = 300
+bantime = 86400
+action  = vesta[name=WEB]
+port    = http,https
+
+[wordpress-wplogin]
+enabled = true
+filter = wordpress-wplogin
+logpath = /var/log/nginx/access.log
+maxretry = 5
+findtime = 300
+bantime = 86400
+action  = vesta[name=WEB]
+port    = http,https
+
+[block-wp-scanners]
+enabled = true
+filter = block-wp-scanners
+logpath = /var/log/nginx/access.log
+maxretry = 5
+findtime = 3600
+bantime = 86400
+action  = vesta[name=WEB]
+port    = http,https
+```
+
 Save and exit (`CTRL + X`, `Y`, `ENTER`).
 
 ---
